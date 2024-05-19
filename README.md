@@ -33,5 +33,50 @@ __Component Reusability:__ Write reusable Vue components to avoid code duplicati
 
 __Composables:__ Utilize Vue 3 composables to share reusable logic.
 
+## Install
+Clone the git repository on your computer
+
+`$ git clone git@github.com:sayedahmadnawid/laravel11-vue3-tailwind-vite-authenticatoin-vuex-i18n-scaffolding.git`
+
+Move inside the application root directory. 
+
+`$ cd laravel11-vue3-tailwind-vite-authenticatoin-vuex-i18n-scaffolding`
+
+`$ composer install`
+
+
+## Setup
+When you are done with installation, copy the .env.example file to .env
+
+`$ cp .env.example .env`
+
+Generate the application key
+
+`$ php artisan key:generate`
+
+Add your database credentials to the necessary env fields
+
+Migrate the application
+
+`$ php artisan migrate`
+
+Install node modules
+
+`$ npm install`
+
+## Run the Application
+Open two tabs inside the application root directory.
+
+In the first tab run:
+
+`$ php artisan serve`
+
+In the second tab run:
+
+`$ npm run dev`
+
+Browse the application 
+
+`localhost:8000`
 ## Contributing
 Contributions are welcome! Feel free to create a pull request.
