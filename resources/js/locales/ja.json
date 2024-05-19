@@ -1,0 +1,13 @@
+{
+    "languages": {
+      "ja": "日本語",
+      "en": "英語"
+    },
+    "title": {
+      "config": "構成"
+    },
+    "user": {
+      "sign_in": "ログインする",
+      "sign_out" : "サインアウト"
+    }
+  }
