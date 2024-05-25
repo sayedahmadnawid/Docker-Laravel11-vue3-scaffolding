@@ -1,9 +1,11 @@
 <template>
   <div class="bg-white rlative border rounded-lg">
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-start">
       <!-- Search bar -->
       <SearchForm @search="handleSearch" />
       <!-- Radio buttons -->
+      <FilterRadio @filter="handleRadioFilter" />
+
       <!-- List of filter -->
     </div>
     <table class="w-full text-sm text-left text-gray-500">
@@ -37,10 +39,11 @@
 
 <script setup>
 import { ref, computed } from "vue";
-
 import SearchForm from "@/components/SearchForm.vue";
+import FilterRadio from "@/components//FilterRadio.vue";
 
 const searchFilter = ref("");
+const radioFilter = ref("");
 
 const props = defineProps({
   items: {
@@ -50,18 +53,34 @@ const props = defineProps({
 });
 
 const filterItems = computed(() => {
+  let items = props.items;
+
+  switch (radioFilter.value) {
+    case "Easy":
+      items = items.filter((item) => item.difficulty === "Easy");
+      break;
+
+    case "Medium":
+      items = items.filter((item) => item.difficulty === "Medium");
+      break;
+  }
+
   if (searchFilter.value !== "") {
-    return props.items.filter(
+    items = items.filter(
       (item) =>
         item.name.includes(searchFilter.value) ||
         item.cuisine.includes(searchFilter.value) ||
         item.difficulty.includes(searchFilter.value)
     );
   }
-  return props.items;
+  return items;
 });
 
 const handleSearch = (search) => {
   searchFilter.value = search;
+};
+
+const handleRadioFilter = (filter) => {
+  radioFilter.value = filter;
 };
 </script>
