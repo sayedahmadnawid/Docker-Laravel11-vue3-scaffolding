@@ -1,5 +1,5 @@
 <template>
-   <div>
-    Clients Page
-   </div>
+   clients
 </template>
+<script setup>
+</script>

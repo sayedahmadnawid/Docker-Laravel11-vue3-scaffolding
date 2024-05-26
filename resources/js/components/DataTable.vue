@@ -1,12 +1,16 @@
 <template>
   <div class="bg-white rlative border rounded-lg">
-    <div class="flex items-center justify-start">
+    <div class="flex items-center justify-between">
       <!-- Search bar -->
       <SearchForm @search="handleSearch" />
       <!-- Radio buttons -->
       <FilterRadio @filter="handleRadioFilter" />
-
       <!-- List of filter -->
+      <FilterDropdown
+        @filter="handleCheckboxFilter"
+        :items="countries"
+        title="Cuisines"
+      />
     </div>
     <table class="w-full text-sm text-left text-gray-500">
       <thead class="text-xs rext-gray-700 uppercase bg-gray-50">
@@ -41,9 +45,11 @@
 import { ref, computed } from "vue";
 import SearchForm from "@/components/SearchForm.vue";
 import FilterRadio from "@/components//FilterRadio.vue";
+import FilterDropdown from "@/components/core/FilterDropdown.vue";
 
 const searchFilter = ref("");
 const radioFilter = ref("");
+const cuisineFilter = ref([]);
 
 const props = defineProps({
   items: {
@@ -65,6 +71,10 @@ const filterItems = computed(() => {
       break;
   }
 
+  if (cuisineFilter.value.length) {
+    items = items.filter((item) => cuisineFilter.value.includes(item.cuisine));
+  }
+
   if (searchFilter.value !== "") {
     items = items.filter(
       (item) =>
@@ -83,4 +93,19 @@ const handleSearch = (search) => {
 const handleRadioFilter = (filter) => {
   radioFilter.value = filter;
 };
+
+const handleCheckboxFilter = (filter) => {
+  if (cuisineFilter.value.includes(filter)) {
+    return cuisineFilter.value.splice(cuisineFilter.value.indexOf(filter), -1);
+  }
+  return cuisineFilter.value.push(filter);
+};
+
+const countries = computed(() => {
+  return [
+    ...new Set(
+      Object.entries(props.items).map(([key, value]) => value.cuisine || "")
+    ),
+  ];
+});
 </script>

@@ -27,13 +27,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "BaseInput",
-  inheritAttrs: false,
-};
-</script>
-
 <script setup>
 import { defineProps, onMounted, reactive } from "vue";
 
