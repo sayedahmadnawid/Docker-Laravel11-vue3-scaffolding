@@ -60,6 +60,8 @@ Migrate the application
 
 `$ php artisan migrate`
 
+`$ php artisan db:seed`
+
 Install node modules
 
 `$ npm install`
