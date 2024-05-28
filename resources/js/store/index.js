@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import axiosClient from "@/plugins/axios.js";
+import traders from "@/store//modules/traders.js";
 
 const store = createStore({
   state: {
@@ -58,7 +59,9 @@ const store = createStore({
     },
   },
   getters: {},
-  modules: {},
+  modules: {
+    traders
+  },
 });
 
 export default store;
