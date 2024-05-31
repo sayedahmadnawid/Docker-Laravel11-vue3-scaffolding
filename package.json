@@ -23,6 +23,7 @@
         "vue-i18n": "^9.13.1",
         "vue-loader": "^17.0.1",
         "vue-router": "^4.0.13",
-        "vuex": "^4.0.2"
+        "vuex": "^4.0.2",
+        "yubinbango-core2": "^0.6.3"
     }
 }

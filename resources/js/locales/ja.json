@@ -1,13 +1,36 @@
 {
     "languages": {
-      "ja": "日本語",
-      "en": "英語"
+        "ja": "日本語",
+        "en": "英語"
     },
     "title": {
-      "config": "構成"
+        "config": "構成"
     },
     "user": {
-      "sign_in": "ログインする",
-      "sign_out" : "サインアウト"
+        "sign_in": "ログインする",
+        "sign_out": "サインアウト"
+    },
+    "address": {
+        "postal_code": "郵便番号",
+        "postal_code_example": "652-0816",
+        "prefecture": "都道府県",
+        "prefecture_example": "兵庫県",
+        "city": "市区町村",
+        "city_example": "神戸市兵庫区",
+        "area": "町域",
+        "area_example": "永沢町",
+        "street": "丁目・番地",
+        "street_example": "3-8-2目"
+    },
+    "general": {
+      "add_trader": "取引先追加",
+        "trader_name": "取引先名",
+        "trader_name_example": "藤田伊藤",
+        "trader_name_kana": "取引先名カナ",
+        "trader_name_kana_example": "フジタ　イトウ",
+        "phone": "電話番号",
+        "phone_example": "090-0000-0000",
+        "fax": "Fax#",
+        "fax_example": "090-0000-0000"
     }
-  }
+}

@@ -18,6 +18,6 @@ class Trader extends Model
         'prefecture',
         'city',
         'area',
-        'street_address',
+        'street',
     ];
 }

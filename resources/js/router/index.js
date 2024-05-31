@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "@/views/Dashboard.vue";
-import Login from "@/views/Login.vue";
-import Register from "@/views/Register.vue";
-import Clients from "@/views/Clients.vue";
+import Login from "@/views/auth/login.vue";
+import Register from "@/views/auth/Register.vue";
+import Traders from "@/views/traders/Index.vue";
+import TraderView from "@/views/traders/TraderView.vue";
 import DefaultLayout from "@/components/layout/DefaultLayout.vue";
 import AuthLayout from "@/components/layout/AuthLayout.vue";
 import NotFound from "@/views/NotFound.vue";
@@ -16,7 +17,8 @@ const routes = [
     meta: { requiresAuth: true },
     children: [
       { path: "/dashboard", name: "Dashboard", component: Dashboard },
-      { path: "/clients", name: "Clients", component: Clients },
+      { path: "/traders", name: "Traders", component: Traders },
+      { path: "/traders/create", name: "TraderCreate", component: TraderView },
     ],
   },
   {

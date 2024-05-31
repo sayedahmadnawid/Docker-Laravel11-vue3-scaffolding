@@ -5,8 +5,9 @@
     <div class="lg:pl-72">
       <!-- Searchbar -->
       <SearchBar />
-      <main class="py-10">
+      <main class="pt-1">
         <div class="px-4 sm:px-6 lg:px-8">
+          <slot name="header"></slot>
           <!-- Your content -->
           <router-view :key="$route.path"></router-view>
         </div>

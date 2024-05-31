@@ -1,13 +1,36 @@
 {
     "languages": {
-      "ja": "Japanese",
-      "en": "English"
+        "ja": "Japanese",
+        "en": "English"
     },
     "title": {
-      "config": "Configuration"
+        "config": "Configuration"
     },
     "user": {
-      "sign_in": "Sign in",
-      "sign_out" : "Sign Out"
+        "sign_in": "Sign in",
+        "sign_out": "Sign Out"
+    },
+    "address": {
+        "postal_code": "Postal Code",
+        "postal_code_example": "652-0816",
+        "prefecture": "Prefecture",
+        "prefecture_example": "Hyogo",
+        "city": "City",
+        "city_example": "Kobe City",
+        "area": "Area",
+        "area_example": "Eizawachou",
+        "street": "Street",
+        "street_example": "7-3-3"
+    },
+    "general": {
+      "add_trader": "Add Trader",
+        "trader_name": "Trader name",
+        "trader_name_example": "Fujita Ito",
+        "trader_name_kana": "Trader Name Kana",
+        "trader_name_kana_example": "フジタ　イトウ",
+        "phone": "Phone#",
+        "phone_example": "090-0000-0000",
+        "fax": "Fax#",
+        "fax_example": "090-0000-0000"
     }
-  }
+}

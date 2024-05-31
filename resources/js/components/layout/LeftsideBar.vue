@@ -238,7 +238,7 @@ function sidebarToggle(flag) {
 }
 const navigation = [
   { name: "Dashboard", to: "/", icon: HomeIcon },
-  { name: "Clients", to: "/clients", icon: UsersIcon },
+  { name: "Traders", to: "/traders", icon: UsersIcon },
 ];
 
 const apis = [

@@ -3,7 +3,7 @@
     <BaseLabel
       :for="state.uniqueId"
       v-if="label"
-      class="block text-sm font-medium leading-6 text-gray-900"
+      class="block pl-3 text-sm font-medium leading-6 text-gray-900"
       >{{ label }}</BaseLabel
     >
     <div class="mt-1">
@@ -12,7 +12,7 @@
         :type="type"
         v-bind="$attrs"
         :placeholder="placeholder"
-        class="block w-full rounded-md border-0 m-2 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        class="px-2 block w-full rounded-md border-0 m-2 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
         :class="{
           'border-2 border-red-600': error,
           'border-2 border-green-600': success,

@@ -1,9 +1,12 @@
 <template>
-  <button
-    :type="type"
-    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-    :class="{ 'cursor-not-allowed': loading, 'hover:bg-indigo-500': loading }"
-  >
+  <a v-if="href" :href="href" :class="classes">
+    <slot></slot>
+  </a>
+  <router-link v-else-if="props.to" :to="props.to" :class="classes">
+    <slot></slot>
+  </router-link>
+  <button v-else :class="classes">
+    <slot></slot>
     <svg
       v-if="loading"
       aria-hidden="true"
@@ -26,18 +29,38 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { ref } from "@vue/reactivity";
 
+let classes = ref([
+  "flex",
+  "justify-center",
+  "rounded-md",
+  "bg-indigo-600",
+  "px-5",
+  "py-1.5",
+  "text-sm",
+  "font-semibold",
+  "leading-6",
+  "text-white",
+  "shadow-sm",
+  "hover:bg-indigo-500",
+  "focus-visible:outline",
+  "focus-visible:outline-2",
+  "focus-visible:outline-offset-2",
+  "focus-visible:outline-indigo-600",
+]);
 const props = defineProps({
   label: {
     type: String,
     default: "",
   },
-  type: {
-    type: String,
-    default: "button",
-  },
   loading: {
+    type: Boolean,
+    default: false,
+  },
+  to: [Object, String],
+  href: String,
+  link: {
     type: Boolean,
     default: false,
   },

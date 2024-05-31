@@ -86,6 +86,7 @@
                   label="Register"
                   :disabled="loading"
                   :loading="loading"
+                  class="w-full"
                 >
                 </BaseButton>
               </div>

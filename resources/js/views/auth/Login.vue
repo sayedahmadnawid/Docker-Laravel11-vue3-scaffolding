@@ -99,6 +99,7 @@
                   label="Sign in"
                   :disabled="loading"
                   :loading="loading"
+                  class="w-full"
                 >
                 </BaseButton>
               </div>
@@ -121,7 +122,7 @@
 import BaseInput from "@/components/core/BaseInput.vue";
 import BaseButton from "@/components/core/BaseButton.vue";
 import BaseAlert from "@/components/core/BaseAlert.vue";
-import store from "../store/index.js";
+import store from "@/store/index";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 
