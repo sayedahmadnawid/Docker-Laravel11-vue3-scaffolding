@@ -36,11 +36,11 @@ __Composables:__ Utilize Vue 3 composables to share reusable logic.
 ## Install
 Clone the git repository on your computer
 
-`$ git clone git@github.com:sayedahmadnawid/laravel11-vue3-tailwind-vite-authenticatoin-vuex-i18n-scaffolding.git`
+`$ git clone git@github.com:sayedahmadnawid/laravel11-vue3-vite-scaffolding.git`
 
 Move inside the application root directory. 
 
-`$ cd laravel11-vue3-tailwind-vite-authenticatoin-vuex-i18n-scaffolding`
+`$ cd laravel11-vue3-vite-scaffolding`
 
 `$ composer install`
 
@@ -59,6 +59,8 @@ Add your database credentials to the necessary env fields
 Migrate the application
 
 `$ php artisan migrate`
+
+`$ php artisan db:seed`
 
 Install node modules
 
