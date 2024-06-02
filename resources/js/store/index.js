@@ -9,6 +9,11 @@ const store = createStore({
       token: sessionStorage.getItem("TOKEN"),
     },
     sidebarOpen: false,
+    notification: {
+      show: false,
+      type: 'success',
+      message: ''
+    }
   },
   actions: {
     sidebarToggle({ commit }, flag) {
@@ -56,6 +61,14 @@ const store = createStore({
       state.user.token = null;
       state.user.data = {};
       sessionStorage.removeItem("TOKEN");
+    },
+    notify: (state, {message, type}) => {
+      state.notification.show = true;
+      state.notification.type = type;
+      state.notification.message = message;
+      setTimeout(() => {
+        state.notification.show = false;
+      }, 3000)
     },
   },
   getters: {},

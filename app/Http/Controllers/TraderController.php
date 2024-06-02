@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTraderRequest;
 use App\Http\Requests\UpdateTraderRequest;
+use App\Http\Resources\TraderResource;
 use App\Models\Trader;
 
 class TraderController extends Controller
@@ -29,7 +30,8 @@ class TraderController extends Controller
      */
     public function store(StoreTraderRequest $request)
     {
-        //
+        $trader = Trader::create($request->validated());
+        return new TraderResource($trader);
     }
 
     /**

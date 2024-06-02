@@ -7,7 +7,7 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => ["BaseLabel", "FormError"].includes(tag),
+          isCustomElement: (tag) => ["BaseLabel"].includes(tag),
         },
       },
     }),

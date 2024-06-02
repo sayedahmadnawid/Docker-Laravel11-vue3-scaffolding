@@ -23,13 +23,13 @@
         @input="updateInput"
       />
     </div>
-    <FormError>{{ error }}</FormError>
+    <ErrorMessage>{{ error }}</ErrorMessage>
   </div>
 </template>
 
 <script setup>
 import { defineProps, onMounted, reactive } from "vue";
-
+import ErrorMessage from "@/components/core/ErrorMessage.vue";
 const props = defineProps({
   type: {
     type: String,

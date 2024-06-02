@@ -1,33 +1,35 @@
 import axiosClient from "@/plugins/axios.js";
 
 const state = () => ({
-  all: []
-})
+  all: [],
+});
 
-// getters
-const getters = {}
+const getters = {};
 
-// actions
 const actions = {
-  async getAllTraders ({ commit }) {
-    const response = axiosClient
-    .get("api/traders")
-    .then((res) => {
-    });
-  }
-}
-
-// mutations
-const mutations = {
-  setTraders (state, traders) {
-    state.all = traders
+  saveTrader({ commit, dispatch }, trader) {
+    return axiosClient.post("/trader", trader)
   },
-}
+  async getAllTraders({ commit }) {
+    try {
+      const response = await axiosClient.get("/trader");
+      commit("setTraders", response.data);
+    } catch (error) {
+      console.error("Failed to fetch traders:", error);
+    }
+  },
+};
+
+const mutations = {
+  setTraders(state, traders) {
+    state.all = traders;
+  },
+};
 
 export default {
   namespaced: true,
   state,
   getters,
   actions,
-  mutations
-}
+  mutations,
+};

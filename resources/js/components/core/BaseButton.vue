@@ -37,6 +37,7 @@ let classes = ref([
   "rounded-md",
   "bg-indigo-600",
   "px-5",
+  "ml-2",
   "py-1.5",
   "text-sm",
   "font-semibold",

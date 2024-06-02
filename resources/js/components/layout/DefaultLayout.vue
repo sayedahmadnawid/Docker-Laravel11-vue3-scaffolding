@@ -10,6 +10,7 @@
           <slot name="header"></slot>
           <!-- Your content -->
           <router-view :key="$route.path"></router-view>
+          <Notification/>
         </div>
       </main>
     </div>
@@ -19,4 +20,5 @@
 <script setup>
 import LeftSideBar from "@/components/layout/LeftsideBar.vue";
 import SearchBar from "@/components/layout/SearchBar.vue";
+import Notification from "@/components/molecule/notification.vue";
 </script>

@@ -14,6 +14,18 @@ class TraderResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'name_kana' => $this->name_kana,
+            'phone' => $this->phone,
+            'fax' => $this->fax,
+            'postalcode' => $this->postalcode,
+            'prefecture' => $this->prefecture,
+            'city' => $this->city,
+            'area' => $this->area,
+            'street' => $this->street,
+            
+        ];
     }
 }
