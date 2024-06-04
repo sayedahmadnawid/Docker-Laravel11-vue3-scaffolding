@@ -4,12 +4,12 @@
       <div class="flex items-center justify-between">
         <!-- Search bar -->
         <SearchForm @search="handleSearch" />
-        <!-- List of filter 
+        <!-- List of filter -->
         <FilterDropdown
           @filter="handleCheckboxFilter"
           :items="prefectures"
           title="Prefectures"
-        />-->
+        />
       </div>
     </template>
     <div class="bg-white relative border rounded-lg">
@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in items" :key="item.id" class="border-b">
+          <tr v-for="item in filterItems" :key="item.id" class="border-b">
             <td class="px-4 py-3 font-medium text-gray-900">{{ item.id }}</td>
             <td class="px-4 py-3 font-medium text-gray-900">{{ item.name }}</td>
             <td class="px-4 py-3">{{ item.name_kana }}</td>
@@ -61,6 +61,25 @@ const props = defineProps({
   },
 });
 
+const filterItems = computed(() => {
+  let items = props.items;
+
+  if (PrefectureFilter.value.length) {
+    items = items.filter((item) => PrefectureFilter.value.includes(item.prefecture));
+  }
+
+  if (searchFilter.value !== "") {
+    items = items.filter(
+      (item) =>
+        item.name.includes(searchFilter.value) ||
+        item.name_kana.includes(searchFilter.value) ||
+        item.phone.includes(searchFilter.value) ||
+        item.fax.includes(searchFilter.value)
+    );
+  }
+  return items;
+})
+
 const handleSearch = (search) => {
   searchFilter.value = search;
 };
@@ -72,5 +91,11 @@ const handleCheckboxFilter = (filter) => {
   return PrefectureFilter.value.push(filter);
 };
 
-
+ const prefectures = computed(() => {
+  return [
+    ...new Set(
+      Object.entries(props.items).map(([key, value]) => value.prefecture || "")
+    ),
+  ];
+}); 
 </script>

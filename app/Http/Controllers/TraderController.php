@@ -14,7 +14,7 @@ class TraderController extends Controller
      */
     public function index()
     {
-        return TraderResource::collection(Trader::orderBy('created_at', 'ASC')->paginate(15));
+        return TraderResource::collection(Trader::orderBy('created_at', 'ASC')->paginate(20));
     }
 
     /**
