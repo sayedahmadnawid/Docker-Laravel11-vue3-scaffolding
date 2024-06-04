@@ -4,7 +4,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import Datatable from "@/components/DataTable.vue";
+import Datatable from "@/components/datatables/DataTable.vue";
 import axiosClient from "@/plugins/axios.js";
 
 const items = ref({});

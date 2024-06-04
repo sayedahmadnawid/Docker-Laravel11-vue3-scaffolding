@@ -12,6 +12,7 @@ const store = createStore({
     notification: {
       show: false,
       type: 'success',
+      title: '',
       message: ''
     }
   },
@@ -62,13 +63,14 @@ const store = createStore({
       state.user.data = {};
       sessionStorage.removeItem("TOKEN");
     },
-    notify: (state, {message, type}) => {
+    notify: (state, {title, message, type}) => {
       state.notification.show = true;
       state.notification.type = type;
       state.notification.message = message;
+      state.notification.title = title;
       setTimeout(() => {
         state.notification.show = false;
-      }, 3000)
+      }, 5000)
     },
   },
   getters: {},

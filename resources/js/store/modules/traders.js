@@ -1,7 +1,10 @@
 import axiosClient from "@/plugins/axios.js";
 
 const state = () => ({
-  all: [],
+  all: {
+    loading: false,
+    data: []
+  },
 });
 
 const getters = {};
@@ -10,19 +13,26 @@ const actions = {
   saveTrader({ commit, dispatch }, trader) {
     return axiosClient.post("/trader", trader)
   },
-  async getAllTraders({ commit }) {
-    try {
-      const response = await axiosClient.get("/trader");
-      commit("setTraders", response.data);
-    } catch (error) {
-      console.error("Failed to fetch traders:", error);
-    }
+  getTraders({ commit }) {
+    commit('setTradersLoading', true)
+    return axiosClient.get('/trader').then((res) => {
+      commit('setTradersLoading', false)
+      commit("setTraders", res.data);
+  
+      return res;
+    });
   },
 };
 
 const mutations = {
   setTraders(state, traders) {
     state.all = traders;
+  },
+  setTradersLoading: (state, loading) => {
+    state.all.loading = loading;
+  },
+  setTraders: (state, traders) => {
+    state.all.data = traders.data;
   },
 };
 

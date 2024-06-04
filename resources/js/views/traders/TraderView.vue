@@ -73,16 +73,15 @@
 <script setup>
 import { reactive, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-
 import PageComponent from "@/components/PageComponent.vue";
 import Title from "@/components/molecule/Title.vue";
 import BaseInput from "@/components/core/BaseInput.vue";
 import BaseButton from "@/components/core/BaseButton.vue";
 import { Core as YubinBangoCore } from "yubinbango-core2";
 import store from "@/store/index.js";
-const router = useRouter();
-const route = useRoute();
 
+const router = useRouter();
+const errors = ref({});
 const model = reactive({
   name: "",
   name_kana: "",
@@ -95,11 +94,8 @@ const model = reactive({
   street: "",
 });
 
-const errors = ref({});
-
 function fetchAddress() {
   new YubinBangoCore(model.postalcode, function (addr) {
-    const address = addr.region + addr.locality + addr.street;
     model.prefecture = addr.region;
     model.city = addr.locality;
     model.area = addr.street;
@@ -112,6 +108,7 @@ function saveTrader() {
     .then(() => {
       store.commit("notify", {
         type: "success",
+        title: "Trader Saved!",
         message: "The survey was successfully ",
       });
       router.push({
@@ -122,7 +119,6 @@ function saveTrader() {
       if (error.response.status === 422) {
         errors.value = error.response.data.errors;
       }
-      console.log(errors.value);
     });
 }
 </script>

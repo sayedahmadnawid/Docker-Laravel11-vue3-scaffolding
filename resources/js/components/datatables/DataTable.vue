@@ -47,8 +47,8 @@
 
 <script setup>
 import { ref, computed } from "vue";
-import SearchForm from "@/components/SearchForm.vue";
-import FilterRadio from "@/components//FilterRadio.vue";
+import SearchForm from "@/components/molecule/SearchForm.vue";
+import FilterRadio from "@/components/molecule/FilterRadio.vue";
 import FilterDropdown from "@/components/core/FilterDropdown.vue";
 import PageComponent from "@/components/PageComponent.vue";
 
