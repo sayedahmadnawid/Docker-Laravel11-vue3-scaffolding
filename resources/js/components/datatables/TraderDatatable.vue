@@ -36,7 +36,11 @@
             <td class="px-4 py-3">{{ item.fax }}</td>
             <td class="px-4 py-3">{{ item.prefecture }}</td>
             <td class="px-4 py-3 flex items center justify-end">
-              <a href="#" class="text-indigo-500 hover:underline">Details</a>
+              <BaseButton 
+              class="bg-red-500 text-white text-xs px-2"
+              @click="emit('delete', item.id)" >
+              <TrashIcon class="h-4 w-4 text-white" aria-hidden="true" />
+            </BaseButton>
             </td>
           </tr>
         </tbody>
@@ -50,6 +54,10 @@ import { ref, computed } from "vue";
 import SearchForm from "@/components/molecule/SearchForm.vue";
 import FilterDropdown from "@/components/core/FilterDropdown.vue";
 import PageComponent from "@/components/PageComponent.vue";
+import BaseButton from "@/components/core/BaseButton.vue"
+import { TrashIcon } from "@heroicons/vue/24/outline";
+
+const emit = defineEmits(["delete"]);
 
 const searchFilter = ref("");
 const PrefectureFilter = ref([]);
@@ -98,4 +106,7 @@ const handleCheckboxFilter = (filter) => {
     ),
   ];
 }); 
+
+
+
 </script>

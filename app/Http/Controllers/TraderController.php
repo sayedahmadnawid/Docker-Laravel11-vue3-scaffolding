@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTraderRequest;
 use App\Http\Requests\UpdateTraderRequest;
 use App\Http\Resources\TraderResource;
 use App\Models\Trader;
+use Illuminate\Http\Request;
 
 class TraderController extends Controller
 {
@@ -61,8 +62,9 @@ class TraderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Trader $trader)
+    public function destroy(Trader $trader, Request $request)
     {
-        //
+        $trader->delete();
+        return response('', 204);
     }
 }
