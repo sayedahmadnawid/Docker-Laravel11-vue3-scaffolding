@@ -11,7 +11,7 @@ class UpdateTraderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,15 @@ class UpdateTraderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name_kana' => 'required|string|max:30',
+            'name' => 'required|string|max:30',
+            'fax' => 'nullable|numeric',
+            'phone' => 'nullable|numeric',
+            'postalcode' => 'nullable|string|max:8',
+            'prefecture' => 'nullable|string|max:30',
+            'city' => 'nullable|string|max:30',
+            'area' => 'nullable|string|max:30',
+            'street' => 'nullable|string|max:50',
         ];
     }
 }

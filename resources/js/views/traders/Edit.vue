@@ -4,7 +4,7 @@
       <template v-slot:header>
         <Title :title="$t('general.add_trader')" />
       </template>
-      <form @submit.prevent="saveTrader">
+      <form @submit.prevent="updateTrader">
         <BaseInput
           type="text"
           :label="$t('general.trader_name')"
@@ -71,8 +71,8 @@
   </div>
 </template>
 <script setup>
-import { reactive, ref } from "vue";
-import { useRouter } from "vue-router";
+import { reactive, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import PageComponent from "@/components/PageComponent.vue";
 import Title from "@/components/molecule/Title.vue";
 import BaseInput from "@/components/core/BaseInput.vue";
@@ -81,6 +81,7 @@ import { Core as YubinBangoCore } from "yubinbango-core2";
 import store from "@/store/index.js";
 
 const router = useRouter();
+const route = useRoute();
 const errors = ref({});
 const model = reactive({
   name: "",
@@ -102,14 +103,25 @@ function fetchAddress() {
   });
 }
 
-function saveTrader() {
+if (route.params.id) {
+  store.dispatch("traders/getTrader", route.params.id);
+}
+
+watch(
+  () => store.state.traders.currentTrader.data,
+  (newVal, oldVal) => {
+    Object.assign(model, JSON.parse(JSON.stringify(newVal)));
+  }
+);
+
+function updateTrader() {
   store
-    .dispatch("traders/saveTrader", { ...model })
+    .dispatch("traders/updateTrader", { ...model })
     .then(() => {
       store.commit("notify", {
         type: "success",
-        title: "Trader Saved!",
-        message: "The survey was successfully ",
+        title: "Trader Updated!",
+        message: "The Trader successfully updated ",
       });
       router.push({
         name: "Traders",

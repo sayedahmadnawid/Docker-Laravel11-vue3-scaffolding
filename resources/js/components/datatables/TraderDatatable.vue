@@ -36,6 +36,13 @@
             <td class="px-4 py-3">{{ item.fax }}</td>
             <td class="px-4 py-3">{{ item.prefecture }}</td>
             <td class="px-4 py-3 flex items center justify-end">
+              <BaseButton
+              :to="{ name: 'TraderEdit', params: { id: item.id } }"
+              link
+            >
+              <PencilIcon class="w-4 h-4 text-white" aria-hidden="true"  />
+              
+            </BaseButton>
               <BaseButton 
               class="bg-red-500 text-white text-xs px-2"
               @click="emit('delete', item.id)" >
@@ -55,7 +62,7 @@ import SearchForm from "@/components/molecule/SearchForm.vue";
 import FilterDropdown from "@/components/core/FilterDropdown.vue";
 import PageComponent from "@/components/PageComponent.vue";
 import BaseButton from "@/components/core/BaseButton.vue"
-import { TrashIcon } from "@heroicons/vue/24/outline";
+import { TrashIcon, PencilIcon } from "@heroicons/vue/24/outline";
 
 const emit = defineEmits(["delete"]);
 

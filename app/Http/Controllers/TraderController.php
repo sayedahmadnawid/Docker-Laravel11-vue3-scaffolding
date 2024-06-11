@@ -38,9 +38,9 @@ class TraderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Trader $trader)
+    public function show(Trader $trader, Request $request)
     {
-        //
+        return new TraderResource($trader);
     }
 
     /**
@@ -56,7 +56,9 @@ class TraderController extends Controller
      */
     public function update(UpdateTraderRequest $request, Trader $trader)
     {
-        //
+        $data = $request->validated();
+        $trader->update($data);
+        return new TraderResource($trader);
     }
 
     /**

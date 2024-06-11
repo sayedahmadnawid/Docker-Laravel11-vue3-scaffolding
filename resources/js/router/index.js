@@ -3,7 +3,8 @@ import Dashboard from "@/views/Dashboard.vue";
 import Login from "@/views/auth/login.vue";
 import Register from "@/views/auth/Register.vue";
 import Traders from "@/views/traders/Index.vue";
-import Create from "@/views/traders/Create.vue";
+import TraderCreate from "@/views/traders/Create.vue";
+import TraderEdit from "@/views/traders/Edit.vue";
 import DefaultLayout from "@/components/layout/DefaultLayout.vue";
 import AuthLayout from "@/components/layout/AuthLayout.vue";
 import NotFound from "@/views/NotFound.vue";
@@ -18,7 +19,8 @@ const routes = [
     children: [
       { path: "/dashboard", name: "Dashboard", component: Dashboard },
       { path: "/traders", name: "Traders", component: Traders },
-      { path: "/traders/create", name: "TraderCreate", component: Create },
+      { path: "/traders/create", name: "TraderCreate", component: TraderCreate },
+      { path: "/traders/:id", name: "TraderEdit", component: TraderEdit },
     ],
   },
   {
