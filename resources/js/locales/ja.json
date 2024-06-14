@@ -33,5 +33,9 @@
         "fax": "Fax#",
         "fax_example": "090-0000-0000",
         "submit": "登録"
+    }, 
+    "project": {
+        "project": "ポロジェット",
+        "add_project": "ポロジェット追加"
     }
 }

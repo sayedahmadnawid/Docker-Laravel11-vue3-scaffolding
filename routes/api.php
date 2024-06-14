@@ -21,6 +21,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('trader', TraderController::class);
+    Route::get('/generateCode/{type}', function(){
+      return 'ABCD-1234T  ';
+    });
    // Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 });
 
