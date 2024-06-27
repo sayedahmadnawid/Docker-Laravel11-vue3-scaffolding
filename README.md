@@ -1,4 +1,4 @@
-# Laravel11-vue3-tailwind-vite-authentication-vuex-i18n-scaffolding
+# Docker-Laravel11-vue3-scaffolding
 This repository provides a scaffold designed with best practices in mind, utilizing Laravel 11, Vue 3, Tailwind, and several other modern technologies. The goal is to create a foundation that leverages composables and reusable components to enhance development efficiency and maintainability.
 
 ## Technologies Used
