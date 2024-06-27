@@ -84,7 +84,7 @@ Browse the application
 ## Docker Installation Guide
 Follow these steps to set up and run the application using Docker:
 
-### Step 1: Build the Docker Containers
+#### Step 1: Build the Docker Containers
 
 `$ docker-compose build`
 
