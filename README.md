@@ -80,5 +80,13 @@ In the second tab run:
 Browse the application 
 
 `localhost:8000`
+
+## Docker Installation Guide
+Follow these steps to set up and run the application using Docker:
+
+### Step 1: Build the Docker Containers
+
+`docker-compose build`
+
 ## Contributing
 Contributions are welcome! Feel free to create a pull request.
