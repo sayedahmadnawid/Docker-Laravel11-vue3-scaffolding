@@ -41,7 +41,13 @@
         "temporary_name": "工事名称 (仮称)",
         "construction_exmaple": "アップル西鈴蘭台大規模修繕工事",
         "confirmed_name": "工事名称 (確定)",
-        "short_name": "工事略称"
+        "short_name": "工事略称",
+        "construction_example": "アップル西鈴蘭台大規模修繕工事",
+        "construction_type": "工事区分",
+        "construction_nature": "建設工事の種類",
+        "date_example": "例）2024-02-10",
+        "construction_start_date": "工事開始日",
+        "construction_complete_date": "工事完了日"
 
     }
 }
