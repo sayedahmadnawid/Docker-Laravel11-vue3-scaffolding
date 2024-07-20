@@ -37,6 +37,11 @@
     }, 
     "project": {
         "project": "ポロジェット",
-        "add_project": "ポロジェット追加"
+        "add_project": "ポロジェット追加",
+        "temporary_name": "工事名称 (仮称)",
+        "construction_exmaple": "アップル西鈴蘭台大規模修繕工事",
+        "confirmed_name": "工事名称 (確定)",
+        "short_name": "工事略称"
+
     }
 }

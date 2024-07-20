@@ -6,9 +6,14 @@
       </template>
       <form @submit.prevent="saveProject">
         <BaseInput type="text" :label="$t('project.code')" v-model="model.code" :error="errors?.code" readonly />
+        <BaseInput type="text" :label="$t('project.temporary_name')" v-model="model.temporary_name" :placeholder="$t('project.construction_example')" :error="errors?.code"/>
+        <BaseInput type="text" :label="$t('project.confirmed_name')" v-model="model.confirmed_name" :placeholder="$t('project.construction_example')" :error="errors?.code"/>
+        <BaseInput type="text" :label="$t('project.short_name')" v-model="model.confirmed_name" :placeholder="$t('project.construction_example')" :error="errors?.code"/>
+        <DatePicker :placeholder="$t('general.select_date')" label="Select Date"/>
         <BaseButton>{{ $t("project.submit") }}</BaseButton>
       </form>
     </PageComponent>
+    
   </div>
 </template>
 <script setup>
@@ -20,12 +25,15 @@ import BaseInput from "@/components/core/BaseInput.vue";
 import BaseButton from "@/components/core/BaseButton.vue";
 import { Core as YubinBangoCore } from "yubinbango-core2";
 import store from "@/store/index.js";
+import DatePicker from "@/components/core/DatePicker.vue";
 
 const router = useRouter();
 const errors = ref({});
 const model = reactive({
   code: "",
-  name: "",
+  temporary_name: "",
+  confirmed_name: "",
+  short_name: "",
   name_kana: "",
   fax: "",
   phone: "",

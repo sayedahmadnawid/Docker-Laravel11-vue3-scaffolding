@@ -1,13 +1,13 @@
 {
     "languages": {
-        "ja": "Japanese",
+        "ja": "日本語",
         "en": "English"
     },
     "title": {
         "config": "Configuration"
     },
     "user": {
-        "sign_in": "Sign in",
+        "sign_in": "Sign In",
         "sign_out": "Sign Out"
     },
     "address": {
@@ -16,26 +16,28 @@
         "prefecture": "Prefecture",
         "prefecture_example": "Hyogo",
         "city": "City",
-        "city_example": "Kobe City",
+        "city_example": "Kobe City, Hyogo Ward",
         "area": "Area",
-        "area_example": "Eizawachou",
+        "area_example": "Nagasawa Town",
         "street": "Street",
-        "street_example": "7-3-3"
+        "street_example": "3-8-2"
     },
     "general": {
         "add_trader": "Add Trader",
-        "trader_name": "Trader name",
+        "trader_name": "Trader Name",
         "trader_name_example": "Fujita Ito",
         "trader_name_kana": "Trader Name Kana",
-        "trader_name_kana_example": "フジタ　イトウ",
-        "phone": "Phone#",
+        "trader_name_kana_example": "Fujita Ito",
+        "phone": "Phone Number",
         "phone_example": "090-0000-0000",
-        "fax": "Fax#",
+        "fax": "Fax",
         "fax_example": "090-0000-0000",
-        "submit": "Submit"
-    }, 
+        "submit": "Submit",
+        "select_date": "Select Date"
+    },
     "project": {
         "project": "Project",
-        "add_project": "Add Project"
+        "add_project": "Add Project",
+        "temporary_name": "Temporary name"
     }
 }
