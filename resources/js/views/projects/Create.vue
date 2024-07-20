@@ -5,14 +5,7 @@
         <Title :title="$t('project.add_project')" />
       </template>
       <form @submit.prevent="saveProject">
-        <BaseInput
-          type="text"
-          :label="$t('project.code')"
-          v-model="model.code"
-          :error="errors?.code"
-          readonly
-        />
-
+        <BaseInput type="text" :label="$t('project.code')" v-model="model.code" :error="errors?.code" readonly />
         <BaseButton>{{ $t("project.submit") }}</BaseButton>
       </form>
     </PageComponent>

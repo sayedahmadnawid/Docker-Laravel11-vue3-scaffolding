@@ -32,7 +32,8 @@
         "phone_example": "090-0000-0000",
         "fax": "Fax#",
         "fax_example": "090-0000-0000",
-        "submit": "登録"
+        "submit": "登録",
+        "select_date": "日付を選択"
     }, 
     "project": {
         "project": "ポロジェット",
