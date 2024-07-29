@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTraderRequest;
-use App\Http\Requests\UpdateTraderRequest;
+use App\Http\Requests\Trader\StoreTraderRequest;
+use App\Http\Requests\Trader\UpdateTraderRequest;
 use App\Http\Resources\TraderResource;
 use App\Models\Trader;
 use Illuminate\Http\Request;

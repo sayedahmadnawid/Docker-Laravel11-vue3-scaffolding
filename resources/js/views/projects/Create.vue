@@ -7,14 +7,14 @@
       <form @submit.prevent="saveProject">
         <BaseInput type="text" :label="$t('project.code')" v-model="model.code" :error="errors?.code" readonly />
         <BaseInput type="text" :label="$t('project.temporary_name')" v-model="model.temporary_name"
-          :placeholder="$t('project.construction_example')" :error="errors?.code" />
+          :placeholder="$t('project.construction_example')" :error="errors?.temporary_name" />
         <BaseInput type="text" :label="$t('project.confirmed_name')" v-model="model.confirmed_name"
-          :placeholder="$t('project.construction_example')" :error="errors?.code" />
+          :placeholder="$t('project.construction_example')" :error="errors?.confirmed_name" />
         <BaseInput type="text" :label="$t('project.short_name')" v-model="model.confirmed_name"
-          :placeholder="$t('project.construction_example')" :error="errors?.code" />
-        <BaseSelect :options="construction_types" :label="$t('project.construction_type')" v-model="model.type" />
+          :placeholder="$t('project.construction_example')" :error="errors?.short_name" />
+        <BaseSelect :options="construction_types" :label="$t('project.construction_type')" v-model="model.type"/>
         <BaseSelect :options="natures" :label="$t('project.construction_nature')" v-model="model.nature" />
-        <DatePicker :placeholder="now()" :label="$t('project.construction_start_date')" v-model="model.start_date" />
+        <DatePicker :placeholder="now()" :label="$t('project.construction_start_date')" v-model="model.start_date"/>
         <DatePicker :placeholder="now(30)" :label="$t('project.construction_complete_date')"
           v-model="model.complete_date" />
         <BaseButton>{{ $t("project.submit") }}</BaseButton>
@@ -30,7 +30,6 @@ import PageComponent from "@/components/PageComponent.vue";
 import Title from "@/components/molecule/Title.vue";
 import BaseInput from "@/components/core/BaseInput.vue";
 import BaseButton from "@/components/core/BaseButton.vue";
-import { Core as YubinBangoCore } from "yubinbango-core2";
 import store from "@/store/index.js";
 import DatePicker from "@/components/core/DatePicker.vue";
 import BaseSelect from "@/components/core/BaseSelect.vue";
@@ -46,14 +45,6 @@ const model = reactive({
   nature: "",
   start_date: "",
   complete_date: "",
-  name_kana: "",
-  fax: "",
-  phone: "",
-  postalcode: "",
-  prefecture: "",
-  city: "",
-  area: "",
-  street: "",
 });
 
 const construction_types = [
@@ -73,26 +64,11 @@ onMounted(() => {
   store.dispatch("projects/generateCode");
 });
 
-function fetchAddress() {
-  new YubinBangoCore(model.postalcode, function (addr) {
-    model.prefecture = addr.region;
-    model.city = addr.locality;
-    model.area = addr.street;
-  });
-}
-
 function saveProject() {
   store
-    .dispatch("traders/saveProject", { ...model })
+    .dispatch("projects/saveProject", { ...model })
     .then(() => {
-      store.commit("notify", {
-        type: "success",
-        title: "Project Saved!",
-        message: "The project was successfully ",
-      });
-      router.push({
-        name: "Projects",
-      });
+     
     })
     .catch((error) => {
       if (error.response.status === 422) {

@@ -20,10 +20,12 @@ const actions = {
       commit("setProjectCode", res.data);
       return res;
     }); 
-  }
-  /* saveproject({ commit, dispatch }, project) {
+  },
+  saveProject({ commit, dispatch }, project) {
+   
     return axiosClient.post("/project", project);
   },
+  /*
   updateProject({ commit }, project) {
 
     return axiosClient.put(`/project/${project.id}`, project).then((res) => {
