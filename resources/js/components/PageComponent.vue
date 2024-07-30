@@ -1,5 +1,7 @@
 <template>
-  <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
+  <div
+    class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow"
+  >
     <div class="max-w-8xl mx-auto py-6 px-2 sm:px-6 lg:px-8">
       <h1 v-if="title" class="text-xl font-bold text-gray-900">
         {{ title }}
@@ -17,6 +19,3 @@ const props = defineProps({
   title: String,
 });
 </script>
-
-
-

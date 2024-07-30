@@ -11,7 +11,7 @@ import ProjectEdit from "@/views/projects/Edit.vue";
 import DefaultLayout from "@/components/layout/DefaultLayout.vue";
 import AuthLayout from "@/components/layout/AuthLayout.vue";
 import NotFound from "@/views/NotFound.vue";
-import store from "@/store/index.js"
+import store from "@/store/index.js";
 
 const routes = [
   {
@@ -22,10 +22,18 @@ const routes = [
     children: [
       { path: "/dashboard", name: "Dashboard", component: Dashboard },
       { path: "/traders", name: "Traders", component: Traders },
-      { path: "/traders/create", name: "TraderCreate", component: TraderCreate },
+      {
+        path: "/traders/create",
+        name: "TraderCreate",
+        component: TraderCreate,
+      },
       { path: "/traders/:id", name: "TraderEdit", component: TraderEdit },
       { path: "/projects", name: "Projects", component: Projects },
-      { path: "/projects/create", name: "ProjectCreate", component: ProjectCreate },
+      {
+        path: "/projects/create",
+        name: "ProjectCreate",
+        component: ProjectCreate,
+      },
       { path: "/projects/:id", name: "ProjectEdit", component: ProjectEdit },
     ],
   },
@@ -34,7 +42,7 @@ const routes = [
     redirect: "/login",
     name: "Auth",
     component: AuthLayout,
-    meta: {isGuest: true},
+    meta: { isGuest: true },
     children: [
       {
         path: "/login",
@@ -49,17 +57,17 @@ const routes = [
     ],
   },
   {
-    path: '/404',
-    name: 'NotFound',
-    component: NotFound
-  }
+    path: "/404",
+    name: "NotFound",
+    component: NotFound,
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
 
- router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.state.user.token) {
     next({ name: "Login" });
   } else if (store.state.user.token && to.meta.isGuest) {
@@ -67,6 +75,6 @@ const router = createRouter({
   } else {
     next();
   }
-}); 
+});
 
 export default router;

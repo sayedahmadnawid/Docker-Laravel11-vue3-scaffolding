@@ -85,7 +85,7 @@ const filterItems = computed(() => {
       (item) =>
         item.name.includes(searchFilter.value) ||
         item.cuisine.includes(searchFilter.value) ||
-        item.difficulty.includes(searchFilter.value)
+        item.difficulty.includes(searchFilter.value),
     );
   }
   return items;
@@ -109,7 +109,7 @@ const handleCheckboxFilter = (filter) => {
 const countries = computed(() => {
   return [
     ...new Set(
-      Object.entries(props.items).map(([key, value]) => value.cuisine || "")
+      Object.entries(props.items).map(([key, value]) => value.cuisine || ""),
     ),
   ];
 });

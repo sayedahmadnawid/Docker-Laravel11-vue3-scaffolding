@@ -36,7 +36,7 @@
           <span class="sr-only">View notifications</span>
           <BellIcon class="h-6 w-6" aria-hidden="true" />
         </button>
-        <LanguageSwitcher/>
+        <LanguageSwitcher />
         <!-- Separator -->
         <div
           class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200"
@@ -79,7 +79,7 @@
                 <a
                   @click="logout"
                   class="block px-3 py-1 text-sm leading-6 text-gray-900 hover:cursor-pointer hover:bg-gray-100"
-                  >{{ $t('user.sign_out') }}</a
+                  >{{ $t("user.sign_out") }}</a
                 >
               </MenuItem>
             </MenuItems>

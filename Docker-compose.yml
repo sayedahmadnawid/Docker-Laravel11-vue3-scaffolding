@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   app:
@@ -28,7 +28,7 @@ services:
     depends_on:
       - app
     networks:
-      - app-network        
+      - app-network
 
   node:
     platform: linux/arm64/v8 #this line is optional if you are using Mac Silicon chip (M1/M2/M3)
@@ -38,7 +38,7 @@ services:
     image: my-laravel-node
     container_name: my-laravel-node
     ports:
-    - "3000:3000"
+      - "3000:3000"
     restart: unless-stopped
     working_dir: /var/www
     volumes:
@@ -74,7 +74,7 @@ services:
       - PMA_ARBITRARY=1
     networks:
       - app-network
-    depends_on: 
+    depends_on:
       - db
 
 networks:

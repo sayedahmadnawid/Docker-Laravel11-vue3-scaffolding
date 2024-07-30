@@ -9,20 +9,19 @@ const state = () => ({
     data: {},
     loading: false,
   },
-  availableCode: ''
+  availableCode: "",
 });
 
 const getters = {};
 
 const actions = {
-  generateCode({commit, dispatch} ){
-     return axiosClient.get(`/generateCode/${'project'}`).then((res) => {
+  generateCode({ commit, dispatch }) {
+    return axiosClient.get(`/generateCode/${"project"}`).then((res) => {
       commit("setProjectCode", res.data);
       return res;
-    }); 
+    });
   },
   saveProject({ commit, dispatch }, project) {
-   
     return axiosClient.post("/project", project);
   },
   /*
@@ -65,7 +64,7 @@ const actions = {
 
 const mutations = {
   setProjectCode: (state, loading) => {
-    state.availableCode = loading
+    state.availableCode = loading;
   },
   setProjectsLoading: (state, loading) => {
     state.all.loading = loading;

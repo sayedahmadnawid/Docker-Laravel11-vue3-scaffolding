@@ -12,10 +12,10 @@ const store = createStore({
     sidebarOpen: false,
     notification: {
       show: false,
-      type: 'success',
-      title: '',
-      message: ''
-    }
+      type: "success",
+      title: "",
+      message: "",
+    },
   },
   actions: {
     sidebarToggle({ commit }, flag) {
@@ -64,20 +64,20 @@ const store = createStore({
       state.user.data = {};
       sessionStorage.removeItem("TOKEN");
     },
-    notify: (state, {title, message, type}) => {
+    notify: (state, { title, message, type }) => {
       state.notification.show = true;
       state.notification.type = type;
       state.notification.message = message;
       state.notification.title = title;
       setTimeout(() => {
         state.notification.show = false;
-      }, 5000)
+      }, 5000);
     },
   },
   getters: {},
   modules: {
     traders,
-    projects
+    projects,
   },
 });
 

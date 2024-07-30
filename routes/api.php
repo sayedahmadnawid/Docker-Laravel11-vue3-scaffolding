@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TraderController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TraderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,17 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-     Route::get('/user', function (Request $request) {
+    Route::get('user', function (Request $request) {
         return $request->user();
     });
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout']);
     Route::resource('trader', TraderController::class);
     Route::resource('project', ProjectController::class);
-    Route::get('/generateCode/{type}', function(){
-      return 'ABCD-1234T  ';
+    Route::get('generateCode/{type}', function () {
+        return 'ABCD-1234T  ';
     });
-   // Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
+    // Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 });
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);

@@ -111,7 +111,7 @@ watch(
   () => store.state.traders.currentTrader.data,
   (newVal, oldVal) => {
     Object.assign(model, JSON.parse(JSON.stringify(newVal)));
-  }
+  },
 );
 
 function updateTrader() {

@@ -1,5 +1,2 @@
-<template>
-   clients
-</template>
-<script setup>
-</script>
+<template>clients</template>
+<script setup></script>

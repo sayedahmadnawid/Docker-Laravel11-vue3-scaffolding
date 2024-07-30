@@ -8,23 +8,21 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
-        'fade-in-down': {
-          "from": {
+        "fade-in-down": {
+          from: {
             transform: "translateY(-0.75rem)",
-            opacity: '0'
+            opacity: "0",
           },
-          "to": {
+          to: {
             transform: "translateY(0rem)",
-            opacity: '1'
+            opacity: "1",
           },
         },
       },
       animation: {
-        'fade-in-down': "fade-in-down 0.2s ease-in-out both",
+        "fade-in-down": "fade-in-down 0.2s ease-in-out both",
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require("@tailwindcss/forms")],
+};

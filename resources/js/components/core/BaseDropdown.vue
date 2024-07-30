@@ -1,7 +1,8 @@
 <template>
-  <Listbox as="div" 
-  :value="props.modelValue"
-  @update:modelValue="value => emit('update:modelValue', value)"
+  <Listbox
+    as="div"
+    :value="props.modelValue"
+    @update:modelValue="(value) => emit('update:modelValue', value)"
   >
     <div class="relative mt-2">
       <ListboxButton
@@ -13,7 +14,7 @@
             alt=""
             class="h-5 w-5 flex-shrink-0 rounded-full"
           />
-          <span class="ml-3 block truncate" >{{ label }}</span>
+          <span class="ml-3 block truncate">{{ label }}</span>
         </span>
         <span class="flex items-center" v-else>
           <img
@@ -21,7 +22,7 @@
             alt="Select a value"
             class="h-5 w-5 flex-shrink-0 rounded-full"
           />
-          <span class="ml-3 block truncate" >Select a Value</span>
+          <span class="ml-3 block truncate">Select a Value</span>
         </span>
         <span
           class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"
@@ -94,16 +95,17 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
 const props = defineProps({
   options: Array,
-  modelValue: [String, Number]
-})
+  modelValue: [String, Number],
+});
 
-const emit = defineEmits(['update:modelValue'])
-const label = computed(()=> {
-  return props.options.find(option => option.value === props.modelValue)?.label
-})
+const emit = defineEmits(["update:modelValue"]);
+const label = computed(() => {
+  return props.options.find((option) => option.value === props.modelValue)
+    ?.label;
+});
 
 const getAvatar = computed(() => {
-  return props.options.find(option => option.value === props.modelValue)?.avatar
-})
-
+  return props.options.find((option) => option.value === props.modelValue)
+    ?.avatar;
+});
 </script>

@@ -231,7 +231,12 @@ import {
   TransitionChild,
   TransitionRoot,
 } from "@headlessui/vue";
-import { HomeIcon, UsersIcon, XMarkIcon, PowerIcon } from "@heroicons/vue/24/outline";
+import {
+  HomeIcon,
+  UsersIcon,
+  XMarkIcon,
+  PowerIcon,
+} from "@heroicons/vue/24/outline";
 const sidebarOpen = computed(() => store.state.sidebarOpen);
 function sidebarToggle(flag) {
   store.dispatch("sidebarToggle", flag);

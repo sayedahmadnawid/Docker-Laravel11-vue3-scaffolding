@@ -10,7 +10,7 @@
           <slot name="header"></slot>
           <!-- Your content -->
           <router-view :key="$route.path"></router-view>
-          <Notification/>
+          <Notification />
         </div>
       </main>
     </div>

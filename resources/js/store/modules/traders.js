@@ -18,7 +18,6 @@ const actions = {
     return axiosClient.post("/trader", trader);
   },
   updateTrader({ commit }, trader) {
-
     return axiosClient.put(`/trader/${trader.id}`, trader).then((res) => {
       commit("setCurrentTrader", res.data);
       return res;

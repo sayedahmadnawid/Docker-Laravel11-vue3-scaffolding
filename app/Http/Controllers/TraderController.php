@@ -32,6 +32,7 @@ class TraderController extends Controller
     public function store(StoreTraderRequest $request)
     {
         $trader = Trader::create($request->validated());
+
         return new TraderResource($trader);
     }
 
@@ -58,6 +59,7 @@ class TraderController extends Controller
     {
         $data = $request->validated();
         $trader->update($data);
+
         return new TraderResource($trader);
     }
 
@@ -67,6 +69,7 @@ class TraderController extends Controller
     public function destroy(Trader $trader, Request $request)
     {
         $trader->delete();
+
         return response('', 204);
     }
 }

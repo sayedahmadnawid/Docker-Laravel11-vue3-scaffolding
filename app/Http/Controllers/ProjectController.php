@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Project\StoreProjectRequest;
 use App\Http\Requests\Project\UpdateProjectRequest;
 use App\Http\Resources\ProjectResource;
-use Illuminate\Http\Request;
 use App\Models\Project;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -31,8 +31,9 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        return response()->json(['message' => $request ]);
+        return response()->json(['message' => $request]);
         $project = Project::create($request->validated());
+
         return new ProjectResource($project);
     }
 
@@ -59,6 +60,7 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project->update($data);
+
         return new ProjectResource($project);
     }
 
@@ -68,6 +70,7 @@ class ProjectController extends Controller
     public function destroy(Project $project, Request $request)
     {
         $project->delete();
+
         return response('', 204);
     }
 }

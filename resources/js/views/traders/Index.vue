@@ -36,7 +36,7 @@ onMounted(() => {
 function deleteTrader(traderId) {
   if (
     confirm(
-      `Are you sure you want to delete this Trader? Operation can't be undone!!`
+      `Are you sure you want to delete this Trader? Operation can't be undone!!`,
     )
   ) {
     store.dispatch("traders/deleteTrader", traderId).then(() => {

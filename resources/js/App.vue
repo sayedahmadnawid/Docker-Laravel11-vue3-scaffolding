@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <router-view></router-view>
-    </div>
+  <div>
+    <router-view></router-view>
+  </div>
 </template>
-<script setup>
-
-</script>
+<script setup></script>

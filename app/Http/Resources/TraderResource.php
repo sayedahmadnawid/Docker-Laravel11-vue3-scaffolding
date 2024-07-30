@@ -25,7 +25,6 @@ class TraderResource extends JsonResource
             'city' => $this->city,
             'area' => $this->area,
             'street' => $this->street,
-            
         ];
     }
 }

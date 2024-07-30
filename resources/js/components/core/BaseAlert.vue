@@ -1,10 +1,10 @@
 <template>
-  <div 
-  class="rounded-md  p-4"
-  :class="{
-    'bg-green-100': type === 'success',
-    'bg-red-100': type === 'error',
-  }"
+  <div
+    class="rounded-md p-4"
+    :class="{
+      'bg-green-100': type === 'success',
+      'bg-red-100': type === 'error',
+    }"
   >
     <div class="flex">
       <div class="flex-shrink-0">
