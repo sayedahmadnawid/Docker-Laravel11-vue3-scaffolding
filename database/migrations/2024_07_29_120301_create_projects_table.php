@@ -11,14 +11,13 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->char('code', 12)->nullable();
-            $table->char('name', 30)->nullable();
-            $table->char('fax', 15)->nullable();
-            $table->char('phone', 15)->nullable();
-            $table->char('postalcode', 8)->nullable();
-            $table->char('prefecture', 30)->nullable();
-            $table->char('city', 30)->nullable();
-            $table->char('area', 30)->nullable();
-            $table->char('street', 50)->nullable();
+            $table->char('temporary_name', 30)->nullable();
+            $table->char('confirmed_name', 30)->nullable();
+            $table->char('short_name', 30)->nullable();
+            $table->char('type', 20)->nullable();
+            $table->char('nature', 20)->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('complete_date')->nullable();
             $table->timestamps();
         });
     }

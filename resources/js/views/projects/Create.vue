@@ -29,7 +29,7 @@
         <BaseInput
           type="text"
           :label="$t('project.short_name')"
-          v-model="model.confirmed_name"
+          v-model="model.short_name"
           :placeholder="$t('project.construction_example')"
           :error="errors?.short_name"
         />
@@ -37,21 +37,25 @@
           :options="construction_types"
           :label="$t('project.construction_type')"
           v-model="model.type"
+          :error="errors?.type"
         />
         <BaseSelect
           :options="natures"
           :label="$t('project.construction_nature')"
           v-model="model.nature"
+          :error="errors?.nature"
         />
         <DatePicker
           :placeholder="now()"
           :label="$t('project.construction_start_date')"
           v-model="model.start_date"
+          :error="errors?.start_date"
         />
         <DatePicker
           :placeholder="now(30)"
           :label="$t('project.construction_complete_date')"
           v-model="model.complete_date"
+          :error="errors?.complete_date"
         />
         <BaseButton>{{ $t("project.submit") }}</BaseButton>
       </form>
@@ -59,7 +63,7 @@
   </div>
 </template>
 <script setup>
-import { reactive, ref, computed, onMounted } from "vue";
+import { reactive, ref, computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import PageComponent from "@/components/PageComponent.vue";
 import Title from "@/components/molecule/Title.vue";
@@ -103,7 +107,16 @@ onMounted(() => {
 function saveProject() {
   store
     .dispatch("projects/saveProject", { ...model })
-    .then(() => {})
+    .then(() => {
+      store.commit("notify", {
+        type: "success",
+        title: "Project Saved!",
+        message: "The Project was successfully added",
+      });
+      router.push({
+        name: "Projects",
+      });
+    })
     .catch((error) => {
       if (error.response.status === 422) {
         errors.value = error.response.data.errors;
@@ -126,4 +139,8 @@ function now(next = 0) {
     })
     .replaceAll("/", "-");
 }
+
+watch(model.start_date, (newDate) => {
+  console.log("hi" + newDate);
+});
 </script>
