@@ -6,19 +6,24 @@
         {{ $t("project.project") }}
       </BaseButton>
     </template>
+    <Spinner v-if="projects.loading" />
   </PageComponent>
 </template>
 <script setup>
 import { computed, onMounted } from "vue";
 import PageComponent from "@/components/PageComponent.vue";
-import TraderDatatable from "@/components/datatables/TraderDatatable.vue";
 import BaseButton from "@/components/core/BaseButton.vue";
 import { PlusIcon } from "@heroicons/vue/20/solid";
 import Spinner from "@/components/molecule/Spinner.vue";
 import store from "@/store/index.js";
 import { useRouter } from "vue-router";
 
-const traders = computed(() => store.state.projects.all);
+const projects = computed(() => store.state.projects.all);
+
+onMounted(() => {
+  store.dispatch("projects/getProjects");
+});
+
 
 const router = useRouter();
 </script>

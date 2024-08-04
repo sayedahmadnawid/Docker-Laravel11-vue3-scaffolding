@@ -24,19 +24,19 @@ const actions = {
   saveProject({ commit, dispatch }, project) {
     return axiosClient.post("/project", project);
   },
+  getProjects({ commit }) {
+    commit("setProjectsLoading", true);
+    return axiosClient.get("/project").then((res) => {
+      commit("setProjectsLoading", false);
+      commit("setProjects", res.data);
+      return res;
+    });
+  },
   /*
   updateProject({ commit }, project) {
 
     return axiosClient.put(`/project/${project.id}`, project).then((res) => {
       commit("setCurrentProject", res.data);
-      return res;
-    });
-  },
-  getprojects({ commit }) {
-    commit("setProjectsLoading", true);
-    return axiosClient.get("/project").then((res) => {
-      commit("setProjectsLoading", false);
-      commit("setProjects", res.data);
       return res;
     });
   },
