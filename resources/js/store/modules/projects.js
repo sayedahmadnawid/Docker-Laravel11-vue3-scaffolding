@@ -4,6 +4,7 @@ const state = () => ({
   all: {
     loading: false,
     data: [],
+    projectsMetaData: {},
   },
   currentProject: {
     data: {},
@@ -24,42 +25,15 @@ const actions = {
   saveProject({ commit, dispatch }, project) {
     return axiosClient.post("/project", project);
   },
-  getProjects({ commit }) {
+  getProjects({ commit }, { page = 1, limit = 10 } = {}) {
     commit("setProjectsLoading", true);
-    return axiosClient.get("/project").then((res) => {
+    return axiosClient.get(`/project?page=${page}&limit=${limit}`).then((res) => {
       commit("setProjectsLoading", false);
-      commit("setProjects", res.data);
+      commit("setProjects", res.data.data);
+      commit("setProjectsMetaData",res.data.meta);
       return res;
     });
   },
-  /*
-  updateProject({ commit }, project) {
-
-    return axiosClient.put(`/project/${project.id}`, project).then((res) => {
-      commit("setCurrentProject", res.data);
-      return res;
-    });
-  },
-  deleteProject({ dispatch }, id) {
-    return axiosClient.delete(`/project/${id}`).then((res) => {
-      dispatch("getProjects");
-      return res;
-    });
-  },
-  getProject({ commit }, id) {
-    commit("setCurrentProjectLoading", true);
-    return axiosClient
-      .get(`/project/${id}`)
-      .then((res) => {
-        commit("setCurrentProject", res.data);
-        commit("setCurrentProjectLoading", false);
-        return res;
-      })
-      .catch((err) => {
-        commit("setCurrentProjectLoading", false);
-        throw err;
-      });
-  }, */
 };
 
 const mutations = {
@@ -70,7 +44,10 @@ const mutations = {
     state.all.loading = loading;
   },
   setProjects: (state, projects) => {
-    state.all.data = projects.data;
+    state.all.data = projects;
+  },
+  setProjectsMetaData: (state, meta) => {
+    state.all.projectsMetaData = meta
   },
   setCurrentProjectLoading: (state, loading) => {
     state.currentProject.loading = loading;

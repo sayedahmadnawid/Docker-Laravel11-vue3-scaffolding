@@ -109,7 +109,7 @@ function saveTrader() {
       store.commit("notify", {
         type: "success",
         title: "Trader Saved!",
-        message: "The survey was successfully ",
+        message: "The Trader was successfully ",
       });
       router.push({
         name: "Traders",

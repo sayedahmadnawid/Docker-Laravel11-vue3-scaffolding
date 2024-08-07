@@ -63,7 +63,7 @@
   </div>
 </template>
 <script setup>
-import { reactive, ref, computed, onMounted, watch } from "vue";
+import { reactive, ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import PageComponent from "@/components/PageComponent.vue";
 import Title from "@/components/molecule/Title.vue";
@@ -104,8 +104,8 @@ onMounted(() => {
   store.dispatch("projects/generateCode");
 });
 
-function saveProject() {
-  store
+async function saveProject() {
+  await store
     .dispatch("projects/saveProject", { ...model })
     .then(() => {
       store.commit("notify", {
@@ -139,8 +139,4 @@ function now(next = 0) {
     })
     .replaceAll("/", "-");
 }
-
-watch(model.start_date, (newDate) => {
-  console.log("hi" + newDate);
-});
 </script>

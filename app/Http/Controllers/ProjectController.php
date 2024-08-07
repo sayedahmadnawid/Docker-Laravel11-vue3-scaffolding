@@ -13,9 +13,34 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ProjectResource::collection(Project::orderBy('created_at', 'ASC')->paginate(20));
+        /* $limit = $request->get('limit', 10);
+        $search = $request->get('search', '');
+        $column_filters = json_decode($request->get('column_filters', '[]'), true);
+
+        $query = Project::query();
+
+        if ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->where('temporary_name', 'LIKE', "%{$search}%")
+                    ->orWhere('short_name', 'LIKE', "%{$search}%");
+            });
+        }
+
+
+        // Handle column filters
+        foreach ($column_filters as $filter) {
+            if (isset($filter['column'], $filter['value'])) {
+                $query->where($filter['column'], 'LIKE', "%{$filter['value']}%");
+            }
+        }
+
+        $projects = $query->orderBy('created_at', 'ASC')->paginate($limit);
+
+        return ProjectResource::collection($projects); */
+
+        return ProjectResource::collection(Project::orderBy('created_at', 'ASC')->paginate(10));
     }
 
     /**
