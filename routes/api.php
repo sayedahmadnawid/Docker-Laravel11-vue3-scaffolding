@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TraderController;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('trader', TraderController::class);
     Route::resource('project', ProjectController::class);
     Route::get('generateCode/{type}', function () {
-        return 'ABCD-1234T  ';
+       $project_count = Project::latest()->first()->id;
+        return 'ABCD-' . $project_count;
     });
     // Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
 });

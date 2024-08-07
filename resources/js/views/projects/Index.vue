@@ -7,13 +7,24 @@
       </BaseButton>
     </template>
     <div class="mb-5">
-      <input v-model="params.search" type="text" class="form-input max-w-xs" placeholder="Search..." />
+      <input
+        v-model="params.search"
+        type="text"
+        class="form-input max-w-xs rounded-md border-0 m-2 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300"
+        placeholder="Search..."
+      />
     </div>
-    <!--  <vue3-datatable :rows="rows" :columns="cols" :loading="loading" :sortable="true" :sortColumn="params.sort_column"
-      :sortDirection="params.sort_direction" /> -->
 
-    <vue3-datatable :rows="rows" :columns="cols" :loading="projects.loading" :totalRows="total_rows"
-      :isServerMode="true" :pageSize="params.pagesize" :search="params.search" @change="changeServer" />
+    <vue3-datatable
+      :rows="rows"
+      :columns="cols"
+      :loading="projects.loading"
+      :totalRows="total_rows"
+      :isServerMode="true"
+      :pageSize="params.pagesize"
+      :search="params.search"
+      @change="changeServer"
+    />
   </PageComponent>
 </template>
 <script setup>
@@ -31,42 +42,16 @@ const rows = computed(() => {
   return projects.value.data ? projects.value.data : [];
 });
 const total_rows = ref(0);
-const loading = ref(true);
 
-onMounted(() => {
-  store.dispatch("projects/getProjects");
-  rows.value = projects.value.data;
-  total_rows.value = store.state.projects.all.projectsMetaData.total;
-});
+let controller = "";
+let timer = "";
 
 const params = reactive({
   current_page: 1,
-  pagesize: 10,
-  search: '',
+  pageSize: 10,
+  search: "",
   column_filters: [],
 });
-
-const changeServer = (data) => {
-  params.column_filters = data.column_filters;
-  params.current_page = data.current_page
-  params.search = data.search;
-  store.dispatch("projects/getProjects", { page: params.current_page, limit: params.pageSize });
-
-  if (data.change_type === 'search') {
-    filterUsers();
-  } else {
-    store.dispatch("projects/getProjects", { page: params.current_page, limit: params.pageSize });
-  }
-};
-
-let timer = 0;
-
-const filterUsers = () => {
-  clearTimeout(timer);
-  timer = setTimeout(() => {
-    store.dispatch("projects/getProjects", { page: params.current_page, limit: params.pageSize });
-  }, 300);
-};
 
 const cols =
   ref([
@@ -74,8 +59,53 @@ const cols =
     { field: "temporary_name", title: "Temporary Name" },
     { field: "confirmed_name", title: "Confiremd_name" },
     { field: "short_name", title: "Short Name" },
-
-    { field: "start_date", title: "Start Date", type: 'date'  },
+    { field: "start_date", title: "Start Date", type: "date" },
   ]) || [];
 
+onMounted(() => {
+  getProjects();
+});
+
+const getProjects = () => {
+  try {
+    if (controller) {
+      controller.abort();
+    }
+
+    controller = new AbortController();
+    const signal = controller.signal;
+
+    projects.loading = true;
+
+    store.dispatch("projects/getProjects", {
+      page: params.current_page,
+      limit: params.pageSize,
+      search: params.search,
+      column_filters: params.column_filters,
+    });
+    rows.value = projects.value.data;
+    total_rows.value = store.state.projects.all.projectsMetaData.total;
+  } catch {}
+  projects.loading = false;
+};
+
+const changeServer = (data) => {
+  params.column_filters = data.column_filters;
+  params.current_page = data.current_page;
+  params.search = data.search;
+  params.pageSize = data.pagesize;
+  getProjects();
+  if (data.change_type === "search") {
+    filterProjects();
+  } else {
+    getProjects();
+  }
+};
+
+const filterProjects = () => {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    getProjects();
+  }, 300);
+};
 </script>

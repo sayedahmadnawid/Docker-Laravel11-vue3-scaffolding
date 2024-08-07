@@ -15,21 +15,21 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        /* $limit = $request->get('limit', 10);
+        $limit = $request->get('limit', 10);
         $search = $request->get('search', '');
         $column_filters = json_decode($request->get('column_filters', '[]'), true);
+
 
         $query = Project::query();
 
         if ($search) {
             $query->where(function ($query) use ($search) {
                 $query->where('temporary_name', 'LIKE', "%{$search}%")
-                    ->orWhere('short_name', 'LIKE', "%{$search}%");
+                    ->orWhere('short_name', 'LIKE', "%{$search}%")
+                    ->orWhere('code', 'LIKE', "%{$search}%");
             });
         }
 
-
-        // Handle column filters
         foreach ($column_filters as $filter) {
             if (isset($filter['column'], $filter['value'])) {
                 $query->where($filter['column'], 'LIKE', "%{$filter['value']}%");
@@ -38,9 +38,7 @@ class ProjectController extends Controller
 
         $projects = $query->orderBy('created_at', 'ASC')->paginate($limit);
 
-        return ProjectResource::collection($projects); */
-
-        return ProjectResource::collection(Project::orderBy('created_at', 'ASC')->paginate(10));
+        return ProjectResource::collection($projects);
     }
 
     /**

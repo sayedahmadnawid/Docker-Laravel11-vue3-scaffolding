@@ -25,14 +25,32 @@ const actions = {
   saveProject({ commit, dispatch }, project) {
     return axiosClient.post("/project", project);
   },
-  getProjects({ commit }, { page = 1, limit = 10 } = {}) {
+  getProjects(
+    { commit },
+    { page = 1, limit = 10, search = "", column_filters = [] } = {},
+  ) {
     commit("setProjectsLoading", true);
-    return axiosClient.get(`/project?page=${page}&limit=${limit}`).then((res) => {
-      commit("setProjectsLoading", false);
-      commit("setProjects", res.data.data);
-      commit("setProjectsMetaData",res.data.meta);
-      return res;
+    console.log("Action getProjects called with:", {
+      page,
+      limit,
+      search,
+      column_filters,
     });
+    return axiosClient
+      .get(`/project`, {
+        params: {
+          page,
+          limit,
+          search,
+          column_filters: JSON.stringify(column_filters),
+        },
+      })
+      .then((res) => {
+        commit("setProjectsLoading", false);
+        commit("setProjects", res.data.data);
+        commit("setProjectsMetaData", res.data.meta);
+        return res;
+      });
   },
 };
 
@@ -47,7 +65,7 @@ const mutations = {
     state.all.data = projects;
   },
   setProjectsMetaData: (state, meta) => {
-    state.all.projectsMetaData = meta
+    state.all.projectsMetaData = meta;
   },
   setCurrentProjectLoading: (state, loading) => {
     state.currentProject.loading = loading;
