@@ -11,6 +11,12 @@ const state = () => ({
     loading: false,
   },
   availableCode: "",
+  params: {
+    current_page: 1,
+    pageSize: 10,
+    search: "",
+    column_filters: [],
+  },
 });
 
 const getters = {};
@@ -26,17 +32,22 @@ const actions = {
     return axiosClient.post("/project", project);
   },
   getProjects(
-    { commit },
-    { page = 1, limit = 10, search = "", column_filters = [] } = {},
+    { commit, state },
+    {
+      page = state.params.current_page,
+      limit = state.params.pageSize,
+      search = state.params.search,
+      column_filters = state.params.column_filters,
+    } = {},
   ) {
     commit("setProjectsLoading", true);
     return axiosClient
       .get(`/project`, {
         params: {
-          page,
-          limit,
-          search,
-          column_filters: JSON.stringify(column_filters),
+          page: state.params.current_page,
+          limit: state.params.pageSize,
+          search: state.params.search,
+          column_filters: JSON.stringify(state.params.column_filters),
         },
       })
       .then((res) => {
@@ -45,6 +56,15 @@ const actions = {
         commit("setProjectsMetaData", res.data.meta);
         return res;
       });
+  },
+  deleteProject({ dispatch }, id) {
+    return axiosClient.delete(`/project/${id}`).then((res) => {
+      dispatch("getProjects");
+      return res;
+    });
+  },
+  updateParams({ commit }, params) {
+    commit("setParams", params);
   },
 };
 
@@ -66,6 +86,12 @@ const mutations = {
   },
   setCurrentProject: (state, project) => {
     state.currentProject.data = project.data;
+  },
+  setParams: (state, params) => {
+    state.params.current_page = params.current_page;
+    state.params.pageSize = params.pageSize;
+    state.params.search = params.search;
+    state.params.column_filters = params.column_filters;
   },
 };
 

@@ -19,7 +19,6 @@ class ProjectController extends Controller
         $search = $request->get('search', '');
         $column_filters = json_decode($request->get('column_filters', '[]'), true);
 
-
         $query = Project::query();
 
         if ($search) {
@@ -36,7 +35,7 @@ class ProjectController extends Controller
             }
         }
 
-        $projects = $query->orderBy('created_at', 'ASC')->paginate($limit);
+        $projects = $query->orderBy('created_at', 'DESC')->paginate($limit);
 
         return ProjectResource::collection($projects);
     }

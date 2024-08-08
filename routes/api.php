@@ -26,7 +26,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('trader', TraderController::class);
     Route::resource('project', ProjectController::class);
     Route::get('generateCode/{type}', function () {
-       $project_count = Project::latest()->first()->id;
+        $project_count = Project::latest()->first()->id;
+
         return 'ABCD-' . $project_count;
     });
     // Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
