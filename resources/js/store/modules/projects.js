@@ -30,12 +30,6 @@ const actions = {
     { page = 1, limit = 10, search = "", column_filters = [] } = {},
   ) {
     commit("setProjectsLoading", true);
-    console.log("Action getProjects called with:", {
-      page,
-      limit,
-      search,
-      column_filters,
-    });
     return axiosClient
       .get(`/project`, {
         params: {

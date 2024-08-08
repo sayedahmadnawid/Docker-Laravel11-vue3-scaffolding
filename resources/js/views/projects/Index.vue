@@ -43,9 +43,6 @@ const rows = computed(() => {
 });
 const total_rows = ref(0);
 
-let controller = "";
-let timer = "";
-
 const params = reactive({
   current_page: 1,
   pageSize: 10,
@@ -68,13 +65,6 @@ onMounted(() => {
 
 const getProjects = () => {
   try {
-    if (controller) {
-      controller.abort();
-    }
-
-    controller = new AbortController();
-    const signal = controller.signal;
-
     projects.loading = true;
 
     store.dispatch("projects/getProjects", {
@@ -94,17 +84,16 @@ const changeServer = (data) => {
   params.current_page = data.current_page;
   params.search = data.search;
   params.pageSize = data.pagesize;
-  getProjects();
+  
   if (data.change_type === "search") {
     filterProjects();
-  } else {
+  }else{
     getProjects();
   }
 };
 
 const filterProjects = () => {
-  clearTimeout(timer);
-  timer = setTimeout(() => {
+ setTimeout(() => {
     getProjects();
   }, 300);
 };
