@@ -4,6 +4,7 @@
       <template v-slot:header>
         <Title :title="$t('project.add_project')" />
       </template>
+      <Spinner v-if="projectLoading" />
       <form @submit.prevent="saveProject">
         <BaseInput
           type="text"
@@ -38,12 +39,14 @@
           :label="$t('project.construction_type')"
           v-model="model.type"
           :error="errors?.type"
+          :selectedOption="model.type"
         />
         <BaseSelect
           :options="natures"
           :label="$t('project.construction_nature')"
           v-model="model.nature"
           :error="errors?.nature"
+          :selectedOption="model.nature"
         />
         <DatePicker
           :placeholder="now()"
@@ -63,8 +66,8 @@
   </div>
 </template>
 <script setup>
-import { reactive, ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { reactive, ref, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import PageComponent from "@/components/PageComponent.vue";
 import Title from "@/components/molecule/Title.vue";
 import BaseInput from "@/components/core/BaseInput.vue";
@@ -72,9 +75,16 @@ import BaseButton from "@/components/core/BaseButton.vue";
 import store from "@/store/index.js";
 import DatePicker from "@/components/core/DatePicker.vue";
 import BaseSelect from "@/components/core/BaseSelect.vue";
+import Spinner from "@/components/molecule/Spinner.vue";
 
 const router = useRouter();
 const errors = ref({});
+const route = useRoute();
+
+const projectLoading = computed(
+  () => store.state.projects.currentProject.loading,
+);
+
 const model = reactive({
   code: "",
   temporary_name: "",
@@ -98,21 +108,40 @@ const natures = [
   { value: "290", title: "解体" },
 ];
 
-model.code = computed(() => store.state.projects.availableCode);
-
-onMounted(() => {
+if (route.params.id) {
+  store
+    .dispatch("projects/getProject", route.params.id)
+    .then(() => {
+      const currentProject = store.state.projects.currentProject.data;
+      Object.assign(model, {
+        ...currentProject,
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching project data:", error);
+    });
+} else {
   store.dispatch("projects/generateCode");
-});
+  model.code = computed(() => store.state.projects.availableCode);
+}
 
 async function saveProject() {
   await store
     .dispatch("projects/saveProject", { ...model })
-    .then(() => {
-      store.commit("notify", {
-        type: "success",
-        title: "Project Saved!",
-        message: "The Project was successfully added",
-      });
+    .then((res) => {
+      if (res.config.method === "put") {
+        store.commit("notify", {
+          type: "info",
+          title: "Project Updated!",
+          message: "The Project was successfully Updated",
+        });
+      } else {
+        store.commit("notify", {
+          type: "success",
+          title: "Project Saved!",
+          message: "The Project was successfully added",
+        });
+      }
       router.push({
         name: "Projects",
       });

@@ -9,7 +9,7 @@
     </BaseLabel>
     <select
       :id="state.uniqueId"
-      v-model="selected"
+      v-model="selectOpion"
       class="mt-2 block w-full rounded-md border-0 py-1.5 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
       :class="{
         'border-2 border-red-600': error,
@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch } from "vue";
+import { ref, reactive, watch, computed } from "vue";
 import ErrorMessage from "@/components/core/ErrorMessage.vue";
 
 const props = defineProps({
@@ -46,6 +46,10 @@ const props = defineProps({
     type: [String, Number],
     default: "",
   },
+  selectedOption: {
+    type: [String, Number],
+    required: false,
+  },
   error: {
     type: String,
     default: "",
@@ -62,13 +66,8 @@ const state = reactive({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const selected = ref(props.modelValue);
-
-watch(selected, (newVal) => {
-  emit("update:modelValue", newVal);
-});
-
-onMounted(() => {
-  state.uniqueId = props.id || `select-${Math.random().toString(16).slice(2)}`;
+const selectOpion = computed({
+  get: () => props.modelValue,
+  set: (v) => emit("update:modelValue", v),
 });
 </script>

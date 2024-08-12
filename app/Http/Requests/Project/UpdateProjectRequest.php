@@ -28,8 +28,8 @@ class UpdateProjectRequest extends FormRequest
             'short_name' => 'required|string|max:30',
             'type' => 'required|string|max:20',
             'nature' => 'required|string|max:20',
-            'start_date' => 'rquired|date',
-            'complete_date' => 'rquired|date',
+            'start_date' => 'required|date',
+            'complete_date' => 'required|date',
         ];
     }
 }

@@ -33,12 +33,12 @@
           >
             <DocumentMagnifyingGlassIcon class="h-5 w-5" aria-hidden="true" />
           </button>
-          <button
-            class="flex items-center justify-center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[40px] h-8 max-h-[40px] text-white rounded bg-[#1DA1F2]"
-            type="button"
+          <router-link
+            :to="{ name: 'ProjectEdit', params: { id: data.value.id } }"
+            class="flex items-center justify-center w-8 max-w-[40px] h-8 max-h-[40px] text-white rounded bg-[#1DA1F2] disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none"
           >
             <PencilSquareIcon class="h-5 w-5" aria-hidden="true" />
-          </button>
+          </router-link>
           <button
             class="flex items-center justify-center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-8 max-w-[40px] h-8 max-h-[40px] text-white rounded bg-[#ea4335]"
             type="button"

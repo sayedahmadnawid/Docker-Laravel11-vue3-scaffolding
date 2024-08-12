@@ -29,7 +29,15 @@ const actions = {
     });
   },
   saveProject({ commit, dispatch }, project) {
-    return axiosClient.post("/project", project);
+    if (project.id) {
+      return axiosClient.put(`/project/${project.id}`, project);
+      /*   .then((res) => {
+          commit('setCurrentProject', res)
+          return res;
+        }); */
+    } else {
+      return axiosClient.post("/project", project);
+    }
   },
   getProjects(
     { commit, state },
@@ -55,6 +63,20 @@ const actions = {
         commit("setProjects", res.data.data);
         commit("setProjectsMetaData", res.data.meta);
         return res;
+      });
+  },
+  getProject({ commit }, id) {
+    commit("setCurrentProjectLoading", true);
+    return axiosClient
+      .get(`/project/${id}`)
+      .then((res) => {
+        commit("setCurrentProject", res.data);
+        commit("setCurrentProjectLoading", false);
+        return res;
+      })
+      .catch((err) => {
+        commit("setCurrentTraderLoading", false);
+        throw err;
       });
   },
   deleteProject({ dispatch }, id) {
